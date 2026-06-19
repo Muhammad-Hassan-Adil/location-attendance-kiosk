@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Kiosk</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MediaPipe Vision -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/vision_bundle.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="kiosk-body">
+    <div class="kiosk-container glass-panel">
+        <h1 style="display:flex; align-items:center; justify-content:center; gap:10px;"><i data-lucide="scan-face"></i> Face Recognition Kiosk</h1>
+        <p>Please stand in front of the camera</p>
+        
+        <div class="video-container">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="overlay"></canvas>
+            <div id="status-overlay" class="hidden">
+                <span id="status-text">Scanning...</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="scan-btn" class="primary-btn"><i data-lucide="camera"></i> SCAN ATTENDANCE</button>
+            <button id="admin-btn" class="secondary-btn" onclick="window.location.href='admin.html'">
+                <i data-lucide="layout-dashboard"></i> Go to Admin Dashboard
+            </button>
+            <p id="instruction-text">Press SCAN to mark attendance.</p>
+        </div>
+    </div>
+    <script src="config.js"></script>
+    <script type="module" src="kiosk.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
