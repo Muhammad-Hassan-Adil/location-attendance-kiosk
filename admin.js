@@ -29,7 +29,7 @@ async function fetchLocation() {
                     console.warn("Geolocation denied or failed. Falling back to IP-based location...", error);
                     await fetchIpLocation();
                 },
-                { timeout: 10000 }
+                { timeout: 10000, enableHighAccuracy: true, maximumAge: 0 }
             );
         } else {
             console.warn("Geolocation is not supported by this browser. Falling back to IP-based location...");

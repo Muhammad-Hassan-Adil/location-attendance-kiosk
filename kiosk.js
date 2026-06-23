@@ -30,7 +30,7 @@ async function fetchLocation() {
                     console.warn("Geolocation denied or failed. Falling back to IP-based location...", error);
                     await fetchIpLocation();
                 },
-                { timeout: 10000 }
+                { timeout: 10000, enableHighAccuracy: true, maximumAge: 0 }
             );
         } else {
             console.warn("Geolocation is not supported by this browser. Falling back to IP-based location...");
@@ -94,6 +94,10 @@ initVision();
 startCamera();
 
 scanBtn.addEventListener("click", () => {
+    if (currentLat === 0.0 && currentLon === 0.0) {
+        alert("Still acquiring GPS location. Please ensure location permissions are granted and try again in a few seconds.");
+        return;
+    }
     if (!faceLandmarker) {
         alert("AI Model is still loading. Please wait.");
         return;
